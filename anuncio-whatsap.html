@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anuncio WhatsApp</title>
+  <style>
+    :root{
+      --bg: #0f172a;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #25D366;
+      --accent-dark: #1faa52;
+      --button-text: #ffffff;
+      --radius: 22px;
+      --shadow: 0 18px 50px rgba(0,0,0,.18);
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      color: var(--text);
+    }
+
+    .wrapper{
+      width: 100%;
+      max-width: 1100px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .editor, .preview{
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      padding: 22px;
+      color: #fff;
+    }
+
+    .editor h2, .preview h2{
+      margin-top:0;
+      margin-bottom:16px;
+      font-size: 22px;
+    }
+
+    .field{
+      margin-bottom:14px;
+    }
+
+    .field label{
+      display:block;
+      margin-bottom:6px;
+      font-size:14px;
+      color:#dbeafe;
+    }
+
+    .field input, .field textarea{
+      width:100%;
+      border:none;
+      outline:none;
+      border-radius:14px;
+      padding:12px 14px;
+      font-size:15px;
+      font-family: inherit;
+    }
+
+    .field textarea{
+      min-height:100px;
+      resize:vertical;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .btn{
+      display:inline-block;
+      width:100%;
+      border:none;
+      border-radius:14px;
+      padding:13px 16px;
+      font-size:15px;
+      font-weight:bold;
+      cursor:pointer;
+      text-decoration:none;
+      text-align:center;
+      transition: .2s ease;
+    }
+
+    .btn:hover{ transform: translateY(-1px); }
+
+    .btn-primary{
+      background: var(--accent);
+      color: var(--button-text);
+    }
+
+    .btn-primary:hover{
+      background: var(--accent-dark);
+    }
+
+    .preview-card{
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      color: var(--text);
+      height:100%;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .image-box{
+      position:relative;
+      width:100%;
+      aspect-ratio: 16/9;
+      background:#e5e7eb;
+      overflow:hidden;
+    }
+
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .content{
+      padding: 22px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      flex:1;
+    }
+
+    .badge{
+      display:inline-flex;
+      width:max-content;
+      align-items:center;
+      gap:8px;
+      background: #dcfce7;
+      color: #166534;
+      border-radius:999px;
+      padding:7px 12px;
+      font-size:13px;
+      font-weight:bold;
+    }
+
+    .title{
+      margin:0;
+      font-size:28px;
+      line-height:1.1;
+    }
+
+    .desc{
+      margin:0;
+      color: var(--muted);
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .info{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:auto;
+    }
+
+    .chip{
+      background:#f3f4f6;
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:13px;
+      color:#374151;
+    }
+
+    .small{
+      font-size:12px;
+      color:#cbd5e1;
+      margin-top:8px;
+    }
+
+    @media (max-width: 900px){
+      .wrapper{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <section class="editor">
+      <h2>Editar anuncio</h2>
+
+      <div class="field">
+        <label for="titulo">Título</label>
+        <input id="titulo" type="text" value="Pedí tu presupuesto por WhatsApp" />
+      </div>
+
+      <div class="field">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion">Escribinos ahora y te respondemos al instante. Podés consultar precios, disponibilidad y hacer tu pedido directo.</textarea>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="botonTexto">Texto del botón</label>
+          <input id="botonTexto" type="text" value="Enviar WhatsApp" />
+        </div>
+
+        <div class="field">
+          <label for="telefono">Número WhatsApp</label>
+          <input id="telefono" type="text" value="549XXXXXXXXXX" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="mensaje">Mensaje prellenado</label>
+        <textarea id="mensaje">Hola, quiero hacer una consulta sobre el producto.</textarea>
+      </div>
+
+      <div class="field">
+        <label for="linkExtra">Link extra al hacer clic en la imagen/tarjeta</label>
+        <input id="linkExtra" type="url" value="https://tusitio.com" />
+      </div>
+
+      <div class="field">
+        <label for="imagen">Cambiar imagen</label>
+        <input id="imagen" type="file" accept="image/*" />
+      </div>
+
+      <button class="btn btn-primary" id="descargar">Descargar HTML</button>
+      <div class="small">No usa suscripciones. Funciona con navegador y hosting gratis.</div>
+    </section>
+
+    <section class="preview">
+      <h2>Vista previa</h2>
+      <div class="preview-card" id="card">
+        <div class="image-box" id="imageBox">
+          <img id="previewImg" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Imagen del anuncio">
+        </div>
+        <div class="content">
+          <span class="badge">Disponible ahora</span>
+          <h1 class="title" id="previewTitulo">Pedí tu presupuesto por WhatsApp</h1>
+          <p class="desc" id="previewDescripcion">Escribinos ahora y te respondemos al instante. Podés consultar precios, disponibilidad y hacer tu pedido directo.</p>
+          <div class="info">
+            <span class="chip" id="previewTelefono">WhatsApp: 549XXXXXXXXXX</span>
+            <span class="chip" id="previewLink">Link: https://tusitio.com</span>
+          </div>
+          <a id="whatsappBtn" class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">Enviar WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const titulo = document.getElementById('titulo');
+    const descripcion = document.getElementById('descripcion');
+    const botonTexto = document.getElementById('botonTexto');
+    const telefono = document.getElementById('telefono');
+    const mensaje = document.getElementById('mensaje');
+    const linkExtra = document.getElementById('linkExtra');
+    const imagen = document.getElementById('imagen');
+
+    const previewTitulo = document.getElementById('previewTitulo');
+    const previewDescripcion = document.getElementById('previewDescripcion');
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const previewTelefono = document.getElementById('previewTelefono');
+    const previewLink = document.getElementById('previewLink');
+    const previewImg = document.getElementById('previewImg');
+
+    function actualizar() {
+      previewTitulo.textContent = titulo.value;
+      previewDescripcion.textContent = descripcion.value;
+      whatsappBtn.textContent = botonTexto.value;
+      previewTelefono.textContent = 'WhatsApp: ' + telefono.value;
+      previewLink.textContent = 'Link: ' + linkExtra.value;
+
+      const numero = telefono.value.replace(/\D/g, '');
+      const texto = encodeURIComponent(mensaje.value);
+      whatsappBtn.href = `https://wa.me/${numero}?text=${texto}`;
+
+      document.getElementById('card').style.cursor = 'pointer';
+    }
+
+    titulo.addEventListener('input', actualizar);
+    descripcion.addEventListener('input', actualizar);
+    botonTexto.addEventListener('input', actualizar);
+    telefono.addEventListener('input', actualizar);
+    mensaje.addEventListener('input', actualizar);
+    linkExtra.addEventListener('input', actualizar);
+
+    imagen.addEventListener('change', function(e){
+      const file = e.target.files[0];
+      if(file){
+        const reader = new FileReader();
+        reader.onload = function(ev){
+          previewImg.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById('card').addEventListener('click', function(e){
+      if(e.target.id !== 'whatsappBtn'){
+        const link = linkExtra.value.trim();
+        if(link) window.open(link, '_blank', 'noopener,noreferrer');
+      }
+    });
+
+    document.getElementById('descargar').addEventListener('click', function(){
+      const html = document.documentElement.outerHTML;
+      const blob = new Blob([html], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'anuncio-whatsapp.html';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    actualizar();
+  </script>
+</body>
+</html>
